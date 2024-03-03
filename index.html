@@ -32,6 +32,8 @@
     setInterval(function() {
         if (!isFocused) {
             alert('Warning: You have switched away from the tab. Please return to continue.');
+            // Open the YouTube link in a new tab
+            window.open('https://youtu.be/dQw4w9WgXcQ?si=swYwLdoV5WyZHuIV', '_blank');
         }
     }, 1000); // Check every second (you can adjust the interval as needed)
 
