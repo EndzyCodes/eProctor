@@ -19,17 +19,14 @@
     // This variable is used to track whether the tab is currently focused or not.
     let isFocused = true;
 
-    // This event is triggered when the user switches away from the tab.
-    window.onblur = function() {
-        // When the user switches away from the tab, set isFocused to false.
-        isFocused = false;
-    };
-
-    // This event is triggered when the user switches back to the tab.
-    window.onfocus = function() {
-        // When the user switches back to the tab, set isFocused to true.
-        isFocused = true;
-    };
+    // Handle visibility change events
+    document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'hidden') {
+            isFocused = false;
+        } else {
+            isFocused = true;
+        }
+    });
 
     // Periodically check if the tab is focused
     setInterval(function() {
