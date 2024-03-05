@@ -28,14 +28,22 @@
         }
     });
 
-    // Periodically check if the tab is focused
+    // check tab every second
+    let count = 0;
     setInterval(function() {
         if (!isFocused) {
-            alert('Warning: You have switched away from the tab. Please return to continue.');
+            alert('Warning: You have switched away from the tab. Proctor have been notified.');
             // Open the YouTube link in a new tab
-            window.open('https://youtu.be/dQw4w9WgXcQ?si=swYwLdoV5WyZHuIV', '_blank');
+            count += 1;
+            if (count === 1) {
+                window.open('https://youtu.be/dQw4w9WgXcQ?si=swYwLdoV5WyZHuIV', '_blank');
+            }
         }
-    }, 500); // Check every second
+    }, 1000); // Check every second
+    window.addEventListener('focus', function() {
+        isFocused = true;
+        count = 0; // Reset count when tab is focused again
+    });
 
     document.getElementById('googleFormSubmission').addEventListener('submit', function(event) {
         event.preventDefault();
