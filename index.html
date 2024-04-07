@@ -1,66 +1,33 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Portal</title>
+    
+    <link rel="stylesheet" href="styles.css">
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
 </head>
 <body>
 
-<h1>Welcome to the Quiz Portal</h1>
+<div class="quizLinkContainer">
 
-<form id="googleFormSubmission">
-    <label for="googleFormLink">Paste Google Form Link:</label>
-    <input type="text" id="googleFormLink" name="googleFormLink">
-    <button type="submit">Submit</button>
-</form>
 
+    <h1>Welcome to the Quiz Portal</h1>
+
+    <form id="googleFormSubmission">
+        <label for="googleFormLink">Paste Google Form Link:</label>
+        <input type="text" id="googleFormLink" name="googleFormLink">
+        <button type="submit">Submit</button>
+    </form>
+</div>
 <div id="embeddedFormContainer"></div>
 
-<script>
-    // This variable is used to track whether the tab is currently focused or not.
-    let isFocused = true;
+<!-- <button id="CreateGForm_btn" onclick="window.open('https://docs.google.com/forms/u/0/?tgif=d&ec=asw-forms-hero-goto', '_blank')">Go to Google Form</button> -->
 
-    // Handle visibility change events
-    document.addEventListener("visibilitychange", function() {
-        if (document.visibilityState === 'hidden') {
-            isFocused = false;
-        } else {
-            isFocused = true;
-        }
-    });
 
-    // check tab every second
-    let count = 0;
-    setInterval(function() {
-        if (!isFocused) {
-            alert('Warning: You have switched away from the tab. Proctor have been notified.');
-            // Open the YouTube link in a new tab
-            count += 1;
-            if (count === 1) {
-                window.open('https://youtu.be/dQw4w9WgXcQ?si=swYwLdoV5WyZHuIV', '_blank');
-            }
-        }
-    }, 1000); // Check every second
-    window.addEventListener('focus', function() {
-        isFocused = true;
-        count = 0; // Reset count when tab is focused again
-    });
-
-    document.getElementById('googleFormSubmission').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Get the Google Form link from the input field
-        const googleFormLink = document.getElementById('googleFormLink').value;
-
-        // Embed the Google Form within an iframe
-        const embeddedFormContainer = document.getElementById('embeddedFormContainer');
-        embeddedFormContainer.innerHTML = `<iframe src="${googleFormLink}" width="100%" height="800px"></iframe>`;
-
-        // Hide the heading and form
-        document.querySelector('h1').style.display = 'none';
-        document.getElementById('googleFormSubmission').style.display = 'none';
-    });
-</script>
+<script src="index.js"></script>
 
 </body>
 </html>
